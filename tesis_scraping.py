@@ -20,15 +20,15 @@ topics = [
 
 for year in [2019, 2020, 2021]:
     for topic in topics:
-        for page in range(50):
-            # repositorio UA
-            pdf_links = []
-            r = session.get(f'https://repositorio.autonoma.edu.pe/discover?rpp=10&etal=0&query=%22{topic}%22&scope=/&group_by=none&page={page}&sort_by=score&order=desc&filtertype_0=dateIssued&filter_relational_operator_0=contains&filter_0={year}')
+        pdf_links = []
+        for page in range(10):
+            # repositorio UCV
+            r = session.get(f'https://repositorio.ucv.edu.pe/discover?rpp=10&etal=0&query=%22{topic}%22&scope=/&group_by=none&page={page}&sort_by=score&order=desc&filtertype_0=dateIssued&filter_relational_operator_0=contains&filter_0={year}')
             links = r.html.find('.img-thumbnail')
             for link in links:
                 img = link.xpath('//img')[0]
                 img_src = img.attrs['src'].split('.jpg')[0]
-                pdf_src = 'https://repositorio.autonoma.edu.pe' + img_src
+                pdf_src = 'https://repositorio.ucv.edu.pe' + img_src
                 pdf_links.append(pdf_src)
             df = pd.DataFrame(pdf_links)
-            df.to_csv(f'UA_{year}_{topic}_pdf_links.csv', header=False)
+            df.to_csv(f'UCV_{year}_{topic}_pdf_links.csv', header=False)
