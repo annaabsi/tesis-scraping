@@ -18,7 +18,7 @@ topics = [
     "fidelizacion"
 ]
 
-for year in [2019, 2020, 2021]:
+for year in [2021]:
     for topic in topics:
         for page in range(200):
             # repositorio UCV
