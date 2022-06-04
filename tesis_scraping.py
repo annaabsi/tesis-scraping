@@ -18,7 +18,7 @@ topics = [
     "fidelizacion"
 ]
 
-for university in ["uss", "autonoma"]:
+for university in ["ucv", "uss", "autonoma"]:
     for year in [2019, 2020, 2021]:
         for topic in topics:
             pdf_links = []
