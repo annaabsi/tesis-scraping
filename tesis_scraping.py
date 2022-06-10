@@ -4,14 +4,14 @@ session = HTMLSession()
 
 # scrapear tesis de 3 carreras de 3 universidades
 carreras = {
-    # 'ucv_psicología': 'https://repositorio.ucv.edu.pe/handle/20.500.12692/42194',
+    'ucv_psicología': 'https://repositorio.ucv.edu.pe/handle/20.500.12692/42194',
     # 'ucv_ciencias de la comunicación': 'https://repositorio.ucv.edu.pe/handle/20.500.12692/42449',
-    # 'ucv_contabilidad': 'https://repositorio.ucv.edu.pe/handle/20.500.12692/42301',
-    'uss_psicología': 'https://repositorio.uss.edu.pe/handle/20.500.12802/785',
+    'ucv_contabilidad': 'https://repositorio.ucv.edu.pe/handle/20.500.12692/42301',
+    #'uss_psicología': 'https://repositorio.uss.edu.pe/handle/20.500.12802/785',
     #'uss_ciencias de la comunicación': 'https://repositorio.uss.edu.pe/handle/20.500.12802/786',
-    'uss_contabilidad': 'https://repositorio.uss.edu.pe/handle/20.500.12802/663',
-    'autonoma_psicología': 'https://repositorio.autonoma.edu.pe/handle/20.500.13067/59',
-    'autonoma_contabilidad': 'https://repositorio.autonoma.edu.pe/handle/20.500.13067/61',
+    #'uss_contabilidad': 'https://repositorio.uss.edu.pe/handle/20.500.12802/663',
+    #'autonoma_psicología': 'https://repositorio.autonoma.edu.pe/handle/20.500.13067/59',
+    #'autonoma_contabilidad': 'https://repositorio.autonoma.edu.pe/handle/20.500.13067/61',
     # no disponible
     #'autonoma_ciencias de la comunicación': '',
 }
@@ -20,7 +20,7 @@ d = []
 for carrera, url_carrera in carreras.items():
     university = carrera.split('_')[0]
     career = carrera.split('_')[1]
-    for page in range(20):
+    for page in range(50):
         try:
             r = session.get(f'{url_carrera}/discover?rpp=10&etal=0&group_by=none&page={page}&filtertype_0=dateIssued&filter_relational_operator_0=equals&filter_0=%5B2020+TO+2021%5D')
             containers = r.html.find('.ds-artifact-item')
@@ -51,4 +51,4 @@ for carrera, url_carrera in carreras.items():
         except:
             continue
 df = pd.DataFrame(d)
-df.to_csv('base_datos_tesis.csv')
+df.to_csv('base_datos_tesis2.csv')
